@@ -44,20 +44,20 @@ export default function SolutionSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="max-w-3xl mx-auto mb-16"
+          className="max-w-4xl mx-auto mb-16"
         >
           <motion.div
             variants={staggerItem}
-            className="relative p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-hidden"
+            className="relative p-6 md:p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-x-auto"
           >
             {/* Flow diagram */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-mono text-sm">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3 text-mono text-sm min-w-max md:min-w-0">
               {/* Claude Code */}
               <motion.div
                 className="flex flex-col items-center gap-2"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-28 lg:w-32 h-14 lg:h-16 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
+                <div className="w-24 md:w-28 h-12 md:h-14 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
                   <span className="text-[var(--color-text-primary)]">Claude Code</span>
                 </div>
                 <span className="text-[var(--color-text-muted)] text-xs">Write / Edit / Bash</span>
@@ -70,7 +70,7 @@ export default function SolutionSection() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <div className="w-8 md:w-16 h-px bg-gradient-to-r from-[var(--color-border)] to-[var(--color-accent)]" />
+                <div className="w-6 md:w-10 h-px bg-gradient-to-r from-[var(--color-border)] to-[var(--color-accent)]" />
                 <motion.div
                   className="w-2 h-2 rounded-full bg-[var(--color-accent)]"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
@@ -83,7 +83,7 @@ export default function SolutionSection() {
                 className="flex flex-col items-center gap-2"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-28 lg:w-32 h-14 lg:h-16 rounded-lg bg-[var(--color-accent-muted)] border border-[var(--color-accent)] flex items-center justify-center">
+                <div className="w-24 md:w-28 h-12 md:h-14 rounded-lg bg-[var(--color-accent-muted)] border border-[var(--color-accent)] flex items-center justify-center">
                   <span className="text-[var(--color-accent)]">Hook</span>
                 </div>
                 <span className="text-[var(--color-accent)] text-xs">~12ms</span>
@@ -101,7 +101,7 @@ export default function SolutionSection() {
                   animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
                 />
-                <div className="w-8 md:w-16 h-px bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border)]" />
+                <div className="w-6 md:w-10 h-px bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border)]" />
               </motion.div>
 
               {/* SQLite */}
@@ -109,7 +109,7 @@ export default function SolutionSection() {
                 className="flex flex-col items-center gap-2"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-28 lg:w-32 h-14 lg:h-16 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
+                <div className="w-24 md:w-28 h-12 md:h-14 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
                   <span className="text-[var(--color-text-primary)]">SQLite</span>
                 </div>
                 <span className="text-[var(--color-text-muted)] text-xs">.diachron/events.db</span>
@@ -122,7 +122,7 @@ export default function SolutionSection() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
               >
-                <div className="w-8 md:w-16 h-px bg-[var(--color-border)]" />
+                <div className="w-6 md:w-10 h-px bg-[var(--color-border)]" />
               </motion.div>
 
               {/* Timeline */}
@@ -130,7 +130,7 @@ export default function SolutionSection() {
                 className="flex flex-col items-center gap-2"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-28 lg:w-32 h-14 lg:h-16 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
+                <div className="w-24 md:w-28 h-12 md:h-14 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center">
                   <span className="text-[var(--color-text-primary)]">/timeline</span>
                 </div>
                 <span className="text-[var(--color-text-muted)] text-xs">Query & Export</span>
