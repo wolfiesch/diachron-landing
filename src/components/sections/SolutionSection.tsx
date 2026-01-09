@@ -97,11 +97,11 @@ export default function SolutionSection() {
                 transition={{ delay: 0.5 }}
               >
                 <motion.div
-                  className="w-2 h-2 rounded-full bg-[var(--color-accent)]"
+                  className="w-2 h-2 rounded-full bg-[var(--color-accent-secondary)]"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
                 />
-                <div className="w-px md:w-10 h-6 md:h-px bg-gradient-to-b md:bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border)]" />
+                <div className="w-px md:w-10 h-6 md:h-px bg-gradient-to-b md:bg-gradient-to-r from-[var(--color-accent-secondary)] to-[var(--color-border)]" />
               </motion.div>
 
               {/* SQLite */}

@@ -1,8 +1,9 @@
 @import 'tailwindcss';
 
 /* ============================================================================
- * Diachron Design System — Monochrome + Amber Accent
- * Philosophy: Pure black, amber reveals on interaction only
+ * Diachron Design System — Dual-Accent Cyan/Magenta
+ * Philosophy: Pure black void, cyan + magenta reveal on interaction
+ * Inspired by: Isometric voxel pyramid logo
  * ============================================================================ */
 
 @theme {
@@ -22,10 +23,15 @@
   --color-border-hover: rgba(255, 255, 255, 0.12);
   --color-border-focus: rgba(255, 255, 255, 0.20);
 
-  /* Accent — interactive states ONLY */
-  --color-accent: #facc15;
-  --color-accent-hover: #fde047;
-  --color-accent-muted: rgba(250, 204, 21, 0.15);
+  /* Primary Accent — Cyan (interactive states, primary actions) */
+  --color-accent: #22D3EE;
+  --color-accent-hover: #67E8F9;
+  --color-accent-muted: rgba(34, 211, 238, 0.15);
+
+  /* Secondary Accent — Magenta (highlights, hover emphasis) */
+  --color-accent-secondary: #D946EF;
+  --color-accent-secondary-hover: #E879F9;
+  --color-accent-secondary-muted: rgba(217, 70, 239, 0.15);
 
   /* Semantic */
   --color-success: #22c55e;
@@ -160,8 +166,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--color-accent-muted);
 }
 
 .btn-secondary {
@@ -274,3 +281,39 @@ h1, h2, h3, h4, h5, h6 {
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
+
+/* ============================================================================
+ * Gradient Utilities — Cyan/Magenta Accent System
+ * ============================================================================ */
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+}
+
+.gradient-accent-reverse {
+  background: linear-gradient(135deg, var(--color-accent-secondary) 0%, var(--color-accent) 100%);
+}
+
+.gradient-accent-text {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}

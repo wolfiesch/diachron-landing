@@ -29,7 +29,9 @@ vercel --prod    # Deploy to production
 2. **Design Tokens** - CSS custom properties defined in `src/index.css` under `@theme`:
    - Backgrounds: `--color-void`, `--color-surface`, `--color-surface-elevated`
    - Text: `--color-text-primary`, `--color-text-secondary`, `--color-text-muted`
-   - Accent (interactive only): `--color-accent` (amber #facc15)
+   - Primary Accent: `--color-accent` (cyan #22D3EE) - interactive states
+   - Secondary Accent: `--color-accent-secondary` (magenta #D946EF) - highlights
+   - Gradient utilities: `.gradient-accent`, `.gradient-accent-text`
    - Use `var(--color-*)` syntax, not Tailwind color classes
 
 3. **Component Classes** - Base styles for `.btn`, `.btn-primary`, `.btn-secondary`, `.card`, `.input` defined in `src/index.css`

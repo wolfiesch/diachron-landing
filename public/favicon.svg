@@ -1,7 +1,22 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="32" height="32" rx="6" fill="#000000"/>
-  <path d="M8 11L16 7L24 11V21L16 25L8 21V11Z" stroke="#facc15" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M16 15V25" stroke="#facc15" stroke-width="2"/>
-  <path d="M8 11L16 15L24 11" stroke="#facc15" stroke-width="2" stroke-linejoin="round"/>
-  <circle cx="16" cy="15" r="2" fill="#facc15"/>
+
+  <!-- Isometric pyramid base - wider, more prominent -->
+  <!-- Left face (cyan) with subtle gradient feel -->
+  <path d="M5 19 L16 13 L16 25 L5 31 Z" fill="#22D3EE"/>
+  <!-- Right face (magenta) -->
+  <path d="M27 19 L16 13 L16 25 L27 31 Z" fill="#D946EF"/>
+
+  <!-- Middle tier - left (cyan) -->
+  <path d="M8 15 L16 10 L16 17 L8 22 Z" fill="#22D3EE"/>
+  <!-- Middle tier - right (magenta) -->
+  <path d="M24 15 L16 10 L16 17 L24 22 Z" fill="#D946EF"/>
+
+  <!-- Peak - left (cyan) -->
+  <path d="M11 10 L16 6 L16 10 L11 14 Z" fill="#22D3EE"/>
+  <!-- Peak - right (magenta) -->
+  <path d="M21 10 L16 6 L16 10 L21 14 Z" fill="#D946EF"/>
+
+  <!-- Top cap - dark for depth -->
+  <path d="M11 10 L16 4 L21 10 L16 6 Z" fill="#1a1a2e"/>
 </svg>
