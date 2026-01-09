@@ -48,10 +48,10 @@ export default function SolutionSection() {
         >
           <motion.div
             variants={staggerItem}
-            className="relative p-6 md:p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] overflow-x-auto"
+            className="relative p-6 md:p-8 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]"
           >
             {/* Flow diagram */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-3 text-mono text-sm min-w-max md:min-w-0">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3 text-mono text-sm">
               {/* Claude Code */}
               <motion.div
                 className="flex flex-col items-center gap-2"
@@ -65,12 +65,12 @@ export default function SolutionSection() {
 
               {/* Arrow */}
               <motion.div
-                className="flex items-center gap-2"
+                className="flex flex-col md:flex-row items-center gap-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                <div className="w-6 md:w-10 h-px bg-gradient-to-r from-[var(--color-border)] to-[var(--color-accent)]" />
+                <div className="w-px md:w-10 h-6 md:h-px bg-gradient-to-b md:bg-gradient-to-r from-[var(--color-border)] to-[var(--color-accent)]" />
                 <motion.div
                   className="w-2 h-2 rounded-full bg-[var(--color-accent)]"
                   animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
@@ -91,7 +91,7 @@ export default function SolutionSection() {
 
               {/* Arrow */}
               <motion.div
-                className="flex items-center gap-2"
+                className="flex flex-col md:flex-row items-center gap-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
@@ -101,7 +101,7 @@ export default function SolutionSection() {
                   animate={{ scale: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
                 />
-                <div className="w-6 md:w-10 h-px bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border)]" />
+                <div className="w-px md:w-10 h-6 md:h-px bg-gradient-to-b md:bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border)]" />
               </motion.div>
 
               {/* SQLite */}
@@ -117,12 +117,12 @@ export default function SolutionSection() {
 
               {/* Arrow */}
               <motion.div
-                className="flex items-center gap-2"
+                className="flex flex-col md:flex-row items-center gap-2"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
               >
-                <div className="w-6 md:w-10 h-px bg-[var(--color-border)]" />
+                <div className="w-px md:w-10 h-6 md:h-px bg-[var(--color-border)]" />
               </motion.div>
 
               {/* Timeline */}

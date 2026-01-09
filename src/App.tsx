@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import HeroSection from './components/sections/HeroSection';
 import ProblemSection from './components/sections/ProblemSection';
 import SolutionSection from './components/sections/SolutionSection';
+import QuickStartSection from './components/sections/QuickStartSection';
 import DemoSection from './components/sections/DemoSection';
 import PricingSection from './components/sections/PricingSection';
 import CTASection from './components/sections/CTASection';
@@ -37,6 +38,7 @@ function App() {
         <HeroSection />
         <ProblemSection />
         <SolutionSection />
+        <QuickStartSection />
         <DemoSection />
         <PricingSection />
         <CTASection />
