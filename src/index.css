@@ -37,6 +37,11 @@
   --color-success: #22c55e;
   --color-error: #ef4444;
 
+  /* Ambient stars */
+  --color-star-base: rgba(255, 255, 255, 0.12);
+  --color-star-cyan: rgba(34, 211, 238, 0.12);
+  --color-star-magenta: rgba(217, 70, 239, 0.1);
+
   /* Typography */
   --font-display: 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
@@ -89,6 +94,19 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .ambient-backdrop::after {
+    animation: none !important;
+    opacity: 0.25;
+  }
+
+  .ambient-backdrop::before {
+    animation: none !important;
+  }
+
+  .shooting-star-track {
+    display: none;
   }
 }
 
@@ -150,6 +168,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .section {
   padding: var(--spacing-section) 0;
+}
+
+.page-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================================================
@@ -251,6 +274,141 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ============================================================================
+ * Ambient Background - Quiet Drift
+ * ============================================================================ */
+
+.ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image:
+    radial-gradient(1px 1px at 120px 200px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1px 1px at 640px 80px, rgba(255, 255, 255, 0.08) 60%, transparent 70%),
+    radial-gradient(1px 1px at 520px 380px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1px 1px at 880px 260px, rgba(255, 255, 255, 0.1) 60%, transparent 70%),
+    radial-gradient(1px 1px at 300px 600px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1px 1px at 960px 520px, rgba(255, 255, 255, 0.09) 60%, transparent 70%),
+    radial-gradient(1px 1px at 160px 940px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1px 1px at 720px 900px, rgba(255, 255, 255, 0.08) 60%, transparent 70%),
+    radial-gradient(1px 1px at 1080px 720px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1px 1px at 420px 1080px, rgba(255, 255, 255, 0.09) 60%, transparent 70%);
+  background-size: 1200px 1200px;
+  opacity: 0.45;
+}
+
+.ambient-backdrop::before,
+.ambient-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-repeat: repeat;
+}
+
+.ambient-backdrop::before {
+  background-image:
+    radial-gradient(1.6px 1.6px at 180px 160px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1.4px 1.4px at 760px 120px, rgba(255, 255, 255, 0.12) 60%, transparent 70%),
+    radial-gradient(1.8px 1.8px at 960px 420px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1.4px 1.4px at 320px 840px, rgba(255, 255, 255, 0.12) 60%, transparent 70%),
+    radial-gradient(1.6px 1.6px at 1080px 780px, rgba(255, 255, 255, 0.1) 60%, transparent 70%),
+    radial-gradient(1.6px 1.6px at 520px 520px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1.2px 1.2px at 860px 940px, rgba(255, 255, 255, 0.1) 60%, transparent 70%),
+    radial-gradient(1.4px 1.4px at 120px 1080px, var(--color-star-base) 60%, transparent 70%),
+    radial-gradient(1.2px 1.2px at 980px 1040px, var(--color-star-cyan) 60%, transparent 70%);
+  background-size: 1500px 1500px;
+  opacity: 0.28;
+  filter: blur(0.2px);
+  animation: star-drift 160s linear infinite;
+}
+
+.ambient-backdrop::after {
+  background-image:
+    radial-gradient(2px 2px at 260px 120px, rgba(255, 255, 255, 0.18) 60%, transparent 70%),
+    radial-gradient(1.8px 1.8px at 820px 220px, rgba(255, 255, 255, 0.16) 60%, transparent 70%),
+    radial-gradient(2px 2px at 1120px 680px, rgba(255, 255, 255, 0.16) 60%, transparent 70%),
+    radial-gradient(1.6px 1.6px at 480px 980px, rgba(255, 255, 255, 0.16) 60%, transparent 70%),
+    radial-gradient(1.8px 1.8px at 920px 1040px, rgba(255, 255, 255, 0.18) 60%, transparent 70%);
+  background-size: 1800px 1800px;
+  opacity: 0.2;
+  animation: star-twinkle 14s ease-in-out infinite;
+}
+
+.shooting-star-track {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--shooting-rotate));
+  transform-origin: 0 0;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 260px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 40%,
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  filter: blur(0.2px);
+  animation: shooting-star var(--shooting-duration, 18s) linear infinite;
+  animation-delay: var(--shooting-delay, 0s);
+}
+
+.shooting-star-two .shooting-star {
+  width: 240px;
+}
+
+.shooting-star-three .shooting-star {
+  width: 220px;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 35%;
+  width: 3px;
+  height: 3px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+.shooting-star-one {
+  top: 10%;
+  left: -35%;
+  --shooting-rotate: -22deg;
+  --shooting-travel: 135vw;
+  --shooting-duration: 18s;
+  --shooting-delay: -4s;
+}
+
+.shooting-star-two {
+  top: 46%;
+  left: -10%;
+  --shooting-rotate: -18deg;
+  --shooting-travel: 120vw;
+  --shooting-duration: 22s;
+  --shooting-delay: -11s;
+}
+
+.shooting-star-three {
+  top: 72%;
+  left: 25%;
+  --shooting-rotate: -14deg;
+  --shooting-travel: 95vw;
+  --shooting-duration: 26s;
+  --shooting-delay: -18s;
+}
+
+/* ============================================================================
  * Animations
  * ============================================================================ */
 
@@ -276,6 +434,43 @@ h1, h2, h3, h4, h5, h6 {
   }
   50% {
     box-shadow: 0 0 20px 5px var(--color-accent-muted);
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes star-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-120px, 80px, 0);
+  }
+}
+
+@keyframes shooting-star {
+  0%,
+  72% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  74% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 0;
+    transform: translate3d(var(--shooting-travel), 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--shooting-travel), 0, 0);
   }
 }
 

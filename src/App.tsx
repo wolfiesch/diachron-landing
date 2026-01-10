@@ -10,6 +10,7 @@ import QuickStartSection from './components/sections/QuickStartSection';
 import DemoSection from './components/sections/DemoSection';
 import PricingSection from './components/sections/PricingSection';
 import CTASection from './components/sections/CTASection';
+import AmbientBackdrop from './components/effects/AmbientBackdrop';
 
 function App() {
   const isE2E = import.meta.env.VITE_E2E === 'true';
@@ -39,24 +40,28 @@ function App() {
 
   return (
     <MotionConfig reducedMotion={isE2E ? 'always' : 'user'}>
-      <main data-testid="main-content">
-        <HeroSection />
-        <ProblemSection />
-        <SolutionSection />
-        <QuickStartSection />
-        <DemoSection />
-        <PricingSection />
-        <CTASection />
-      </main>
+      <AmbientBackdrop />
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-[var(--color-border)]">
-        <div className="container text-center">
-          <p className="text-[var(--color-text-muted)] text-sm">
-            © {new Date().getFullYear()} Diachron. Open source under MIT license.
-          </p>
-        </div>
-      </footer>
+      <div className="page-content">
+        <main data-testid="main-content">
+          <HeroSection />
+          <ProblemSection />
+          <SolutionSection />
+          <QuickStartSection />
+          <DemoSection />
+          <PricingSection />
+          <CTASection />
+        </main>
+
+        {/* Footer */}
+        <footer className="py-8 border-t border-[var(--color-border)]">
+          <div className="container text-center">
+            <p className="text-[var(--color-text-muted)] text-sm">
+              © {new Date().getFullYear()} Diachron. Open source under MIT license.
+            </p>
+          </div>
+        </footer>
+      </div>
 
       <Analytics />
     </MotionConfig>
