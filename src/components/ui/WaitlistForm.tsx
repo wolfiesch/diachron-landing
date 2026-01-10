@@ -9,14 +9,20 @@ type FormState = 'idle' | 'loading' | 'success' | 'error';
 interface WaitlistFormProps {
   className?: string;
   variant?: 'default' | 'large';
+  testId?: string;
 }
 
-export default function WaitlistForm({ className = '', variant = 'default' }: WaitlistFormProps) {
+export default function WaitlistForm({
+  className = '',
+  variant = 'default',
+  testId,
+}: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   const isLarge = variant === 'large';
+  const testIdPrefix = testId ?? 'waitlist';
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -55,6 +61,7 @@ export default function WaitlistForm({ className = '', variant = 'default' }: Wa
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         className={`flex items-center gap-3 ${className}`}
+        data-testid={`${testIdPrefix}-success`}
       >
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-accent-muted)]">
           <Check className="w-5 h-5 text-[var(--color-accent)]" />
@@ -68,7 +75,11 @@ export default function WaitlistForm({ className = '', variant = 'default' }: Wa
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`${className}`}>
+    <form
+      onSubmit={handleSubmit}
+      className={`${className}`}
+      data-testid={`${testIdPrefix}-form`}
+    >
       <div
         className={`flex gap-3 ${isLarge ? 'flex-col sm:flex-row' : 'flex-row'}`}
       >
@@ -78,9 +89,11 @@ export default function WaitlistForm({ className = '', variant = 'default' }: Wa
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
+            aria-label="Email address"
             required
             disabled={state === 'loading'}
             className={`input w-full ${isLarge ? 'py-4 px-5 text-base' : ''}`}
+            data-testid={`${testIdPrefix}-email`}
           />
         </div>
 
@@ -88,6 +101,7 @@ export default function WaitlistForm({ className = '', variant = 'default' }: Wa
           type="submit"
           disabled={state === 'loading' || !email.trim()}
           className={`btn btn-primary whitespace-nowrap ${isLarge ? 'py-4 px-8' : ''} disabled:opacity-50 disabled:cursor-not-allowed`}
+          data-testid={`${testIdPrefix}-submit`}
         >
           <AnimatePresence mode="wait">
             {state === 'loading' ? (
@@ -125,6 +139,7 @@ export default function WaitlistForm({ className = '', variant = 'default' }: Wa
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             className="mt-2 text-sm text-[var(--color-error)]"
+            data-testid={`${testIdPrefix}-error`}
           >
             {errorMessage || 'Something went wrong. Please try again.'}
           </motion.p>

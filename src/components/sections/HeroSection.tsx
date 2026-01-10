@@ -5,7 +5,10 @@ import WaitlistForm from '../ui/WaitlistForm';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      data-testid="hero-section"
+    >
       {/* Background grid */}
       <GridPattern />
 
@@ -56,7 +59,7 @@ export default function HeroSection() {
 
           {/* Waitlist form */}
           <motion.div variants={staggerItem} className="max-w-md mx-auto">
-            <WaitlistForm variant="large" />
+            <WaitlistForm variant="large" testId="waitlist-hero" />
           </motion.div>
 
           {/* Social proof placeholder */}

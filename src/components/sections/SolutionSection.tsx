@@ -11,7 +11,7 @@ const features = [
 
 export default function SolutionSection() {
   return (
-    <section className="section">
+    <section className="section" data-testid="solution-section">
       <div className="container">
         <motion.div
           variants={staggerContainer}

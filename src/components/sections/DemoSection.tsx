@@ -47,12 +47,15 @@ const timelineEvents = [
 ];
 
 export default function DemoSection() {
-  const [visibleLines, setVisibleLines] = useState(0);
-  const [isInView, setIsInView] = useState(false);
+  const isE2E = import.meta.env.VITE_E2E === 'true';
+  const [visibleLines, setVisibleLines] = useState(
+    isE2E ? timelineEvents.length : 0,
+  );
+  const [isInView, setIsInView] = useState(isE2E);
 
   // Typing animation effect
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || isE2E) return;
 
     const timer = setInterval(() => {
       setVisibleLines((prev) => {
@@ -65,10 +68,10 @@ export default function DemoSection() {
     }, 800);
 
     return () => clearInterval(timer);
-  }, [isInView]);
+  }, [isInView, isE2E]);
 
   return (
-    <section className="section bg-[var(--color-surface)]">
+    <section className="section bg-[var(--color-surface)]" data-testid="demo-section">
       <div className="container">
         <motion.div
           variants={staggerContainer}

@@ -27,7 +27,7 @@ const problems = [
 
 export default function ProblemSection() {
   return (
-    <section className="section bg-[var(--color-surface)]">
+    <section className="section bg-[var(--color-surface)]" data-testid="problem-section">
       <div className="container">
         <motion.div
           variants={staggerContainer}

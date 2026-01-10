@@ -59,14 +59,21 @@ const getLineStyle = (type: TerminalLine['type']): string => {
 };
 
 export default function QuickStartSection() {
-  const [phase, setPhase] = useState<'init' | 'pause' | 'timeline' | 'complete'>('init');
-  const [initLineIndex, setInitLineIndex] = useState(0);
-  const [timelineLineIndex, setTimelineLineIndex] = useState(0);
-  const [isInView, setIsInView] = useState(false);
+  const isE2E = import.meta.env.VITE_E2E === 'true';
+  const [phase, setPhase] = useState<'init' | 'pause' | 'timeline' | 'complete'>(
+    isE2E ? 'complete' : 'init',
+  );
+  const [initLineIndex, setInitLineIndex] = useState(
+    isE2E ? initSequence.length : 0,
+  );
+  const [timelineLineIndex, setTimelineLineIndex] = useState(
+    isE2E ? timelineSequence.length : 0,
+  );
+  const [isInView, setIsInView] = useState(isE2E);
 
   // Animation state machine
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || isE2E) return;
 
     // Phase 1: Init sequence
     if (phase === 'init') {
@@ -103,10 +110,10 @@ export default function QuickStartSection() {
       }, 120);
       return () => clearInterval(timer);
     }
-  }, [isInView, phase]);
+  }, [isInView, isE2E, phase]);
 
   return (
-    <section className="section bg-[var(--color-surface)]">
+    <section className="section bg-[var(--color-surface)]" data-testid="quickstart-section">
       <div className="container">
         {/* Section header */}
         <motion.div

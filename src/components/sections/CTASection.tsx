@@ -5,7 +5,7 @@ import { Github } from 'lucide-react';
 
 export default function CTASection() {
   return (
-    <section className="section bg-[var(--color-surface)]">
+    <section className="section bg-[var(--color-surface)]" data-testid="cta-section">
       <div className="container">
         <motion.div
           variants={staggerContainer}
@@ -28,7 +28,7 @@ export default function CTASection() {
 
           {/* Waitlist form */}
           <motion.div variants={staggerItem} className="mb-8">
-            <WaitlistForm variant="large" className="max-w-md mx-auto" />
+            <WaitlistForm variant="large" className="max-w-md mx-auto" testId="waitlist-cta" />
           </motion.div>
 
           {/* Divider */}
@@ -48,6 +48,7 @@ export default function CTASection() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary inline-flex"
+              data-testid="github-link"
             >
               <Github className="w-5 h-5" />
               <span>View on GitHub</span>
