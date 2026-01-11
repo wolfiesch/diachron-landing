@@ -196,14 +196,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background-color: var(--color-text-primary);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
   color: var(--color-void);
+  box-shadow: 0 6px 16px rgba(34, 211, 238, 0.18);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px var(--color-accent-muted);
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(34, 211, 238, 0.22);
 }
 
 .btn-secondary {
@@ -304,6 +305,25 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: -20%;
   background-repeat: repeat;
+}
+
+@media (max-width: 640px) {
+  .grid-pattern {
+    opacity: 0.35;
+    background-size: 80px 80px;
+  }
+
+  .ambient-backdrop {
+    opacity: 0.25;
+  }
+
+  .ambient-backdrop::before {
+    opacity: 0.18;
+  }
+
+  .ambient-backdrop::after {
+    opacity: 0.12;
+  }
 }
 
 .ambient-backdrop::before {

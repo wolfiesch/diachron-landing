@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Loader2 } from 'lucide-react';
 
@@ -20,9 +20,37 @@ export default function WaitlistForm({
   const [email, setEmail] = useState('');
   const [state, setState] = useState<FormState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [selectedPlan, setSelectedPlan] = useState('');
 
   const isLarge = variant === 'large';
   const testIdPrefix = testId ?? 'waitlist';
+  const inputId = `${testIdPrefix}-email-input`;
+  const selectedPlanLabel = selectedPlan
+    ? selectedPlan
+        .split('-')
+        .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+        .join(' ')
+    : '';
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncPlan = () => {
+      const params = new URLSearchParams(window.location.search);
+      const plan = params.get('plan');
+
+      setSelectedPlan(plan ? plan.trim() : '');
+    };
+
+    syncPlan();
+    window.addEventListener('popstate', syncPlan);
+    window.addEventListener('hashchange', syncPlan);
+
+    return () => {
+      window.removeEventListener('popstate', syncPlan);
+      window.removeEventListener('hashchange', syncPlan);
+    };
+  }, []);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -39,7 +67,7 @@ export default function WaitlistForm({
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, plan: selectedPlan || undefined }),
       });
 
       if (response.ok) {
@@ -80,55 +108,69 @@ export default function WaitlistForm({
       className={`${className}`}
       data-testid={`${testIdPrefix}-form`}
     >
-      <div
-        className={`flex gap-3 ${isLarge ? 'flex-col sm:flex-row' : 'flex-row'}`}
-      >
-        <div className="relative flex-1">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            aria-label="Email address"
-            required
-            disabled={state === 'loading'}
-            className={`input w-full ${isLarge ? 'py-4 px-5 text-base' : ''}`}
-            data-testid={`${testIdPrefix}-email`}
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={state === 'loading' || !email.trim()}
-          className={`btn btn-primary whitespace-nowrap ${isLarge ? 'py-4 px-8' : ''} disabled:opacity-50 disabled:cursor-not-allowed`}
-          data-testid={`${testIdPrefix}-submit`}
+      <div className="space-y-3">
+        {selectedPlan && (
+          <p className="text-xs text-[var(--color-text-muted)]">
+            Interested in the {selectedPlanLabel} plan.
+          </p>
+        )}
+        <label
+          htmlFor={inputId}
+          className="block text-xs text-[var(--color-text-muted)]"
         >
-          <AnimatePresence mode="wait">
-            {state === 'loading' ? (
-              <motion.span
-                key="loading"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center gap-2"
-              >
-                <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Joining...</span>
-              </motion.span>
-            ) : (
-              <motion.span
-                key="idle"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center gap-2"
-              >
-                <span>Join Waitlist</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </button>
+          Email address
+        </label>
+        <div className={`flex gap-3 ${isLarge ? 'flex-col sm:flex-row' : 'flex-row'}`}>
+          <div className="relative flex-1">
+            <input
+              id={inputId}
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              autoComplete="email"
+              inputMode="email"
+              required
+              disabled={state === 'loading'}
+              className={`input w-full ${isLarge ? 'py-4 px-5 text-base' : ''}`}
+              data-testid={`${testIdPrefix}-email`}
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={state === 'loading' || !email.trim()}
+            className={`btn btn-primary whitespace-nowrap ${isLarge ? 'py-4 px-8' : ''} disabled:opacity-50 disabled:cursor-not-allowed`}
+            data-testid={`${testIdPrefix}-submit`}
+          >
+            <AnimatePresence mode="wait">
+              {state === 'loading' ? (
+                <motion.span
+                  key="loading"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2"
+                >
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Joining...</span>
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="idle"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2"
+                >
+                  <span>Join Waitlist</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
       </div>
 
       {/* Error message */}

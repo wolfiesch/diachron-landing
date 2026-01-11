@@ -1,27 +1,33 @@
 import { motion } from 'framer-motion';
 import { staggerContainer, staggerItem, viewportOnce } from '@/lib/motion';
-import { GitCommit, Brain, Clock, Bug } from 'lucide-react';
+import { LineChart, GitCommit, AlertTriangle, RotateCcw, Layers } from 'lucide-react';
 
 const problems = [
   {
+    icon: LineChart,
+    title: 'Langfuse shows what the AI said. Not what it did.',
+    description: 'LLM observability tracks tokens and latency—but not the code changes that actually shipped.',
+    highlight: true,
+  },
+  {
     icon: GitCommit,
-    title: 'Git commits full of jargon',
-    description: 'AI commits say "Implemented feature" without explaining the why or how.',
+    title: 'Git blame shows who. Not why.',
+    description: 'Commits from AI sessions are black boxes. You see the diff, not the intent.',
   },
   {
-    icon: Brain,
-    title: 'AI reasoning disappears',
-    description: 'The context behind decisions vanishes the moment the session ends.',
+    icon: AlertTriangle,
+    title: "When AI code breaks production, you're blind.",
+    description: 'No link from error → AI session → original prompt → diff. Just guessing.',
   },
   {
-    icon: Clock,
-    title: 'No timeline of changes',
-    description: 'Hours of AI-assisted work become an opaque blob in your git history.',
+    icon: RotateCcw,
+    title: 'Rollback means "git revert" and hope.',
+    description: 'No scoped undo per AI change. You revert entire commits or nothing.',
   },
   {
-    icon: Bug,
-    title: 'Bugs without trace',
-    description: "When AI introduces bugs, there's no breadcrumb trail to find the root cause.",
+    icon: Layers,
+    title: 'Multi-assistant = fragmented history.',
+    description: 'Claude Code, Codex, Cursor—each has its own silo. No unified view.',
   },
 ];
 
@@ -42,9 +48,15 @@ export default function ProblemSection() {
           >
             The Problem
           </motion.span>
-          <motion.h2 variants={staggerItem} className="text-section">
-            When AI Agents Touch Your Code...
+          <motion.h2 variants={staggerItem} className="text-section mb-4">
+            Observability Is Not Enough
           </motion.h2>
+          <motion.p
+            variants={staggerItem}
+            className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto"
+          >
+            You can trace LLM calls. But can you trace what they did to your codebase?
+          </motion.p>
         </motion.div>
 
         <motion.div
@@ -58,13 +70,25 @@ export default function ProblemSection() {
             <motion.div
               key={problem.title}
               variants={staggerItem}
-              className="card group"
+              className={`card group ${
+                problem.highlight
+                  ? 'md:col-span-2 border-[var(--color-accent)] bg-gradient-to-r from-[rgba(34,211,238,0.08)] via-[rgba(34,211,238,0.03)] to-transparent'
+                  : ''
+              }`}
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-[var(--color-surface-elevated)] border border-[var(--color-border)] flex items-center justify-center group-hover:border-[var(--color-accent)] group-hover:bg-[var(--color-accent-muted)] transition-all duration-300">
-                  <problem.icon className="w-5 h-5 text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)] transition-colors duration-300" />
+              <div className={`flex items-start gap-4 ${problem.highlight ? 'md:flex-row md:items-center' : ''}`}>
+                <div className={`flex-shrink-0 w-12 h-12 rounded-lg border flex items-center justify-center transition-all duration-300 ${
+                  problem.highlight
+                    ? 'bg-[rgba(34,211,238,0.1)] border-[var(--color-accent)] group-hover:bg-[rgba(34,211,238,0.15)]'
+                    : 'bg-[var(--color-surface-elevated)] border-[var(--color-border)] group-hover:border-[var(--color-accent)] group-hover:bg-[var(--color-accent-muted)]'
+                }`}>
+                  <problem.icon className={`w-5 h-5 transition-colors duration-300 ${
+                    problem.highlight
+                      ? 'text-[var(--color-accent)]'
+                      : 'text-[var(--color-text-muted)] group-hover:text-[var(--color-accent)]'
+                  }`} />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-semibold text-lg mb-2 text-[var(--color-text-primary)]">
                     {problem.title}
                   </h3>
