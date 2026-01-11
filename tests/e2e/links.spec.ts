@@ -27,7 +27,8 @@ test("pricing anchor link points to pricing section", async ({ page }) => {
 
 test("get started anchor link points to hero waitlist", async ({ page }) => {
   await page.goto("/");
-  const link = page.getByRole("link", { name: /get started/i });
+  // Use .first() since there are multiple "Get Started" links (nav, pricing, etc.)
+  const link = page.getByRole("link", { name: /get started/i }).first();
   await expect(link).toHaveAttribute("href", "/#waitlist");
 
   await link.click();
