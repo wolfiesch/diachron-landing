@@ -1,0 +1,398 @@
+
+Running 2 tests using 2 workers
+
+A11Y VIOLATIONS: [
+  {
+    "id": "link-name",
+    "impact": "serious",
+    "tags": [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag244",
+      "wcag412",
+      "section508",
+      "section508.22.a",
+      "TTv5",
+      "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
+      "RGAAv4",
+      "RGAA-6.2.1"
+    ],
+    "description": "Ensure links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://github.com/wolfiesch/diachron\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors\">",
+        "target": [
+          ".hover\\:text-\\[var\\(--color-text-primary\\)\\][target=\"_blank\"][rel=\"noopener noreferrer\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      }
+    ]
+  }
+]
+  ✘  1 [chromium] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations (1.4s)
+A11Y VIOLATIONS: [
+  {
+    "id": "link-name",
+    "impact": "serious",
+    "tags": [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag244",
+      "wcag412",
+      "section508",
+      "section508.22.a",
+      "TTv5",
+      "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
+      "RGAAv4",
+      "RGAA-6.2.1"
+    ],
+    "description": "Ensure links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://github.com/wolfiesch/diachron\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors\">",
+        "target": [
+          ".hover\\:text-\\[var\\(--color-text-primary\\)\\][target=\"_blank\"][rel=\"noopener noreferrer\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      }
+    ]
+  }
+]
+  ✘  2 [webkit] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations (2.0s)
+
+
+  1) [chromium] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations ────
+
+    Error: link-name: 1 nodes
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  -  1[39m
+    [31m+ Received  + 84[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   Object {[39m
+    [31m+     "description": "Ensure links have discernible text",[39m
+    [31m+     "help": "Links must have discernible text",[39m
+    [31m+     "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=playwright",[39m
+    [31m+     "id": "link-name",[39m
+    [31m+     "impact": "serious",[39m
+    [31m+     "nodes": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "all": Array [],[39m
+    [31m+         "any": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "has-visible-text",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element does not have text that is visible to screen readers",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "aria-label",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "aria-label attribute does not exist or is empty",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "aria-labelledby",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": Object {[39m
+    [31m+               "messageKey": "noAttr",[39m
+    [31m+             },[39m
+    [31m+             "id": "non-empty-title",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element has no title attribute",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "failureSummary": "Fix all of the following:[39m
+    [31m+   Element is in tab order and does not have accessible text[39m
+    [31m+[39m
+    [31m+ Fix any of the following:[39m
+    [31m+   Element does not have text that is visible to screen readers[39m
+    [31m+   aria-label attribute does not exist or is empty[39m
+    [31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty[39m
+    [31m+   Element has no title attribute",[39m
+    [31m+         "html": "<a href=\"https://github.com/wolfiesch/diachron\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors\">",[39m
+    [31m+         "impact": "serious",[39m
+    [31m+         "none": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "focusable-no-name",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element is in tab order and does not have accessible text",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "target": Array [[39m
+    [31m+           ".hover\\:text-\\[var\\(--color-text-primary\\)\\][target=\"_blank\"][rel=\"noopener noreferrer\"]",[39m
+    [31m+         ],[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "tags": Array [[39m
+    [31m+       "cat.name-role-value",[39m
+    [31m+       "wcag2a",[39m
+    [31m+       "wcag244",[39m
+    [31m+       "wcag412",[39m
+    [31m+       "section508",[39m
+    [31m+       "section508.22.a",[39m
+    [31m+       "TTv5",[39m
+    [31m+       "TT6.a",[39m
+    [31m+       "EN-301-549",[39m
+    [31m+       "EN-9.2.4.4",[39m
+    [31m+       "EN-9.4.1.2",[39m
+    [31m+       "ACT",[39m
+    [31m+       "RGAAv4",[39m
+    [31m+       "RGAA-6.2.1",[39m
+    [31m+     ],[39m
+    [31m+   },[39m
+    [31m+ ][39m
+
+      20 |     console.log("A11Y VIOLATIONS:", JSON.stringify(violations, null, 2));
+      21 |   }
+    > 22 |   expect(violations, summary).toEqual([]);
+         |                               ^
+      23 | });
+      24 |
+        at /Users/wolfgangschoenberger/Projects/diachron-landing/tests/e2e/a11y.spec.ts:22:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-chromium/video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-homepage-has-no-serious-accessibility-violations-chromium/error-context.md
+
+  2) [webkit] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations ──────
+
+    Error: link-name: 1 nodes
+
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  -  1[39m
+    [31m+ Received  + 84[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   Object {[39m
+    [31m+     "description": "Ensure links have discernible text",[39m
+    [31m+     "help": "Links must have discernible text",[39m
+    [31m+     "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=playwright",[39m
+    [31m+     "id": "link-name",[39m
+    [31m+     "impact": "serious",[39m
+    [31m+     "nodes": Array [[39m
+    [31m+       Object {[39m
+    [31m+         "all": Array [],[39m
+    [31m+         "any": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "has-visible-text",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element does not have text that is visible to screen readers",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "aria-label",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "aria-label attribute does not exist or is empty",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "aria-labelledby",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+           Object {[39m
+    [31m+             "data": Object {[39m
+    [31m+               "messageKey": "noAttr",[39m
+    [31m+             },[39m
+    [31m+             "id": "non-empty-title",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element has no title attribute",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "failureSummary": "Fix all of the following:[39m
+    [31m+   Element is in tab order and does not have accessible text[39m
+    [31m+[39m
+    [31m+ Fix any of the following:[39m
+    [31m+   Element does not have text that is visible to screen readers[39m
+    [31m+   aria-label attribute does not exist or is empty[39m
+    [31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty[39m
+    [31m+   Element has no title attribute",[39m
+    [31m+         "html": "<a href=\"https://github.com/wolfiesch/diachron\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors\">",[39m
+    [31m+         "impact": "serious",[39m
+    [31m+         "none": Array [[39m
+    [31m+           Object {[39m
+    [31m+             "data": null,[39m
+    [31m+             "id": "focusable-no-name",[39m
+    [31m+             "impact": "serious",[39m
+    [31m+             "message": "Element is in tab order and does not have accessible text",[39m
+    [31m+             "relatedNodes": Array [],[39m
+    [31m+           },[39m
+    [31m+         ],[39m
+    [31m+         "target": Array [[39m
+    [31m+           ".hover\\:text-\\[var\\(--color-text-primary\\)\\][target=\"_blank\"][rel=\"noopener noreferrer\"]",[39m
+    [31m+         ],[39m
+    [31m+       },[39m
+    [31m+     ],[39m
+    [31m+     "tags": Array [[39m
+    [31m+       "cat.name-role-value",[39m
+    [31m+       "wcag2a",[39m
+    [31m+       "wcag244",[39m
+    [31m+       "wcag412",[39m
+    [31m+       "section508",[39m
+    [31m+       "section508.22.a",[39m
+    [31m+       "TTv5",[39m
+    [31m+       "TT6.a",[39m
+    [31m+       "EN-301-549",[39m
+    [31m+       "EN-9.2.4.4",[39m
+    [31m+       "EN-9.4.1.2",[39m
+    [31m+       "ACT",[39m
+    [31m+       "RGAAv4",[39m
+    [31m+       "RGAA-6.2.1",[39m
+    [31m+     ],[39m
+    [31m+   },[39m
+    [31m+ ][39m
+
+      20 |     console.log("A11Y VIOLATIONS:", JSON.stringify(violations, null, 2));
+      21 |   }
+    > 22 |   expect(violations, summary).toEqual([]);
+         |                               ^
+      23 | });
+      24 |
+        at /Users/wolfgangschoenberger/Projects/diachron-landing/tests/e2e/a11y.spec.ts:22:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-webkit/video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/a11y-homepage-has-no-serious-accessibility-violations-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/a11y-homepage-has-no-serious-accessibility-violations-webkit/error-context.md
+
+  2 failed
+    [chromium] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations ─────
+    [webkit] › tests/e2e/a11y.spec.ts:3:1 › homepage has no serious accessibility violations ───────

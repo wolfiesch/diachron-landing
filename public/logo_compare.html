@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo Comparison</title>
+    <style>
+      body {
+        background: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        gap: 20px;
+        font-family: system-ui;
+        color: white;
+      }
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+      .item {
+        text-align: center;
+      }
+      img,
+      svg {
+        width: 400px;
+        height: 400px;
+        border: 1px solid #555;
+      }
+      .overlay-container {
+        position: relative;
+        width: 400px;
+        height: 400px;
+      }
+      .overlay-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+      }
+      .overlay-container svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Logo Comparison</h1>
+    <div class="container">
+      <div class="item">
+        <h3>Reference</h3>
+        <img src="reference_logo.png" alt="Reference logo" title="Reference Logo" />
+      </div>
+      <div class="item">
+        <h3>SVG Candidate</h3>
+        <img src="time-slice.svg" alt="SVG candidate logo" title="SVG Candidate Logo" />
+      </div>
+      <div class="item">
+        <h3>Overlay (50% Opacity)</h3>
+        <div class="overlay-container">
+          <img src="reference_logo.png" alt="Reference logo overlay" title="Reference Logo Overlay" />
+          <img src="time-slice.svg" alt="SVG candidate overlay" title="SVG Candidate Overlay" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -7,52 +7,74 @@ const tiers = [
     name: 'Free',
     price: '$0',
     period: 'forever',
-    description: 'For individual developers and open source projects',
+    description: 'Local provenance for individual developers',
     features: [
-      'Unlimited local events',
-      'Full timeline CLI',
+      'Event capture & timeline',
+      'CLI blame command',
+      'Semantic search',
+      'Hash-chain verification',
       'Git integration',
-      'SQLite storage',
       'Export to JSON/Markdown',
     ],
     cta: 'Get Started',
-    ctaStyle: 'btn-secondary',
-    badge: 'Current',
+    ctaStyle: 'btn-primary',
+    ctaHref: '/#waitlist',
+    badge: 'Available Now',
     highlighted: true,
   },
   {
-    name: 'Team',
-    price: '$19',
-    period: 'per seat / month',
-    description: 'For teams who need visibility across projects',
+    name: 'Pro',
+    price: '$12',
+    period: '/month',
+    description: 'For developers who want PR automation',
     features: [
       'Everything in Free',
-      'Cloud sync',
+      'PR Narrative generation',
+      'Multi-machine sync',
+      'Advanced search filters',
+      'Email support',
+    ],
+    cta: 'Notify me',
+    ctaStyle: 'btn-secondary',
+    ctaHref: '/?plan=pro#waitlist',
+    badge: 'Coming Soon',
+    highlighted: false,
+    isComingSoon: true,
+  },
+  {
+    name: 'Team',
+    price: '$20',
+    period: '/user/month',
+    description: 'For teams who need shared visibility',
+    features: [
+      'Everything in Pro',
       'Team dashboard',
-      'Shared timelines',
+      'Shared search',
+      'Slack/GitHub integrations',
       'Priority support',
     ],
-    cta: 'Coming Soon',
+    cta: 'Notify me',
     ctaStyle: 'btn-secondary',
-    badge: null,
+    ctaHref: '/?plan=team#waitlist',
+    badge: 'Coming Soon',
     highlighted: false,
-    disabled: true,
+    isComingSoon: true,
   },
   {
     name: 'Enterprise',
     price: 'Custom',
     period: '',
-    description: 'For organizations with compliance requirements',
+    description: 'For organizations with compliance needs',
     features: [
       'Everything in Team',
       'SSO / SAML',
-      'Audit logs',
-      'Custom integrations',
-      'Dedicated support',
+      'Retention controls',
+      'Tamper attestations',
       'On-premise option',
     ],
     cta: 'Contact Us',
     ctaStyle: 'btn-secondary',
+    ctaHref: '/?plan=enterprise#waitlist',
     badge: null,
     highlighted: false,
   },
@@ -60,7 +82,7 @@ const tiers = [
 
 export default function PricingSection() {
   return (
-    <section className="section" data-testid="pricing-section">
+    <section className="section" id="pricing" data-testid="pricing-section">
       <div className="container">
         <motion.div
           variants={staggerContainer}
@@ -76,14 +98,14 @@ export default function PricingSection() {
             Pricing
           </motion.span>
           <motion.h2 variants={staggerItem} className="text-section mb-4">
-            Start Free, Scale When Ready
+            Free Forever. Pro When You're Ready.
           </motion.h2>
           <motion.p
             variants={staggerItem}
             className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto"
           >
-            Diachron is free and open source for individual use.
-            Team features are coming soon.
+            Local provenance is free and open source.
+            Paid tiers add team features and automation.
           </motion.p>
         </motion.div>
 
@@ -92,7 +114,7 @@ export default function PricingSection() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
         >
           {tiers.map((tier) => {
             const tierId = tier.name.toLowerCase().replace(/\s+/g, '-');
@@ -101,11 +123,10 @@ export default function PricingSection() {
               <motion.div
                 key={tier.name}
                 variants={staggerItem}
-                className={`relative rounded-xl p-6 flex flex-col ${
-                  tier.highlighted
+                className={`relative rounded-xl p-6 flex flex-col ${tier.highlighted
                     ? 'border-2 border-[var(--color-accent)] bg-[var(--color-surface)]'
                     : 'border border-[var(--color-border)] bg-[var(--color-surface)]'
-                } ${tier.disabled ? 'opacity-60' : ''}`}
+                  } ${tier.isComingSoon ? 'bg-[var(--color-surface)]/90' : ''}`}
                 data-testid={`pricing-${tierId}`}
               >
                 {/* Badge */}
@@ -145,14 +166,14 @@ export default function PricingSection() {
                   ))}
                 </ul>
 
-                <button
-                  className={`btn ${tier.ctaStyle} w-full mt-8 ${tier.disabled ? 'cursor-not-allowed' : ''}`}
-                  disabled={tier.disabled}
+                <a
+                  href={tier.ctaHref}
+                  className={`btn ${tier.ctaStyle} w-full mt-8`}
                   data-testid={`pricing-${tierId}-cta`}
                 >
                   {tier.cta}
-                  {!tier.disabled && <ArrowRight className="w-4 h-4" />}
-                </button>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </motion.div>
             );
           })}

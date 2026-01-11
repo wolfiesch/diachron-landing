@@ -1,19 +1,12 @@
 import { useEffect } from 'react';
+import { createRootRoute, Outlet } from '@tanstack/react-router';
 import Lenis from 'lenis';
 import { Analytics } from '@vercel/analytics/react';
 import { MotionConfig } from 'framer-motion';
+import AmbientBackdrop from '@/components/effects/AmbientBackdrop';
+import Navigation from '@/components/ui/Navigation';
 
-import HeroSection from './components/sections/HeroSection';
-import ProblemSection from './components/sections/ProblemSection';
-import SolutionSection from './components/sections/SolutionSection';
-import FeaturesSection from './components/sections/FeaturesSection';
-import QuickStartSection from './components/sections/QuickStartSection';
-import DemoSection from './components/sections/DemoSection';
-import PricingSection from './components/sections/PricingSection';
-import CTASection from './components/sections/CTASection';
-import AmbientBackdrop from './components/effects/AmbientBackdrop';
-
-function App() {
+function RootLayout() {
   const isE2E = import.meta.env.VITE_E2E === 'true';
 
   // Smooth scrolling with Lenis
@@ -42,18 +35,10 @@ function App() {
   return (
     <MotionConfig reducedMotion={isE2E ? 'always' : 'user'}>
       <AmbientBackdrop />
+      <Navigation />
 
       <div className="page-content">
-        <main data-testid="main-content">
-          <HeroSection />
-          <ProblemSection />
-          <SolutionSection />
-          <FeaturesSection />
-          <QuickStartSection />
-          <DemoSection />
-          <PricingSection />
-          <CTASection />
-        </main>
+        <Outlet />
 
         {/* Footer */}
         <footer className="py-8 border-t border-[var(--color-border)]">
@@ -70,4 +55,6 @@ function App() {
   );
 }
 
-export default App;
+export const Route = createRootRoute({
+  component: RootLayout,
+});
